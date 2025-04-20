@@ -1,1 +1,138 @@
+@import url("https://scattagain.github.io/VencordStuff/css/GuildbarRevert.css");
 
+:root {
+    /* Revert vuszak refresh server list by scabau :3 - https://discord.com/channels/1015060230222131221/1028106818368589824/1354502862390038528 */
+    --guildbar-avatar-size: 48px;
+    --blob-scale: 48;
+
+    --guildbar-folder-size: var(--guildbar-avatar-size);
+    --folder-blob-scale: var(--blob-scale);
+}
+
+/* Revert the user area by evie - ttps://discord.com/channels/1015060230222131221/1028106818368589824/1361443579905445898 */
+.visual-refresh div[class^="sidebar_"] section[class^="panels_"] {
+    width: calc(var(--custom-guild-sidebar-width) - var(--custom-guild-list-width) + 1px);
+    left: var(--custom-guild-list-width);
+    bottom: 0px;
+    border-radius: 0px;
+    border: none;
+}
+
+.visual-refresh nav[class*=guilds_] {
+  margin-bottom: unset;
+}
+
+/* Don't cover server list with panel by Obsidian - https://discord.com/channels/1015060230222131221/1028106818368589824/1354331484831354952 */
+.visual-refresh section.panels_c48ade {
+  left: calc(var(--custom-guild-list-width) + var(--space-xs));
+  width: calc(100% - var(--custom-guild-list-width) - var(--space-xs)*2);
+  box-sizing: content-box;
+
+  .actionButtons_e131a9 button {
+    padding: 0;
+  }
+
+}
+
+nav.guilds_c48ade {
+  margin-bottom: 0 !important;
+}
+
+.sidebar_c48ade:after {
+  display: none;
+}
+
+/* CSS for making forms better by nexx - https://discord.com/channels/1015060230222131221/1028106818368589824/1362906396475265286 */
+form>div.focusLock__49fc1>div.rootWithShadow__49fc1 {
+    width: var(--modal-width-medium);
+
+    .header__49fc1 {
+        padding: var(--modal-vertical-padding) var(--modal-horizontal-padding);
+        margin-bottom: var(--modal-vertical-padding);
+        border-bottom: var(--border-normal) solid 1px;
+
+        .colorHeaderPrimary_c9946a {
+            text-align: center;
+            font-weight: var(--font-weight-semibold);
+            flex-grow: 1;
+        }
+
+        .closeButton_e858dd {
+            top: unset;
+            right: var(--modal-horizontal-padding);
+            margin-bottom: auto;
+            margin-top: auto;
+
+            .contents__201d5 {
+                height: 24px;
+            }
+        }
+    }
+
+    .submissionWarning_e858dd {
+        display: none;
+    }
+
+    .formItem__1b11b .eyebrow_b717a1 {
+        margin-bottom: 4px;
+
+        .errorMessage_b717a1 {
+            color: var(--text-danger);
+        }
+    }
+
+    .input__0f084.error__0f084:focus {
+        color: var(--text-normal);
+        transition-property0: border-color, color;
+    }
+
+    .footer__49fc1 {
+        justify-content: space-between;
+    }
+}
+
+/*
+Vencord Plugin customizations
+*/
+
+/* Better MemberCount indicators by Abbysssal - https://discord.com/channels/1015060230222131221/1028106818368589824/1362371508902690896 */
+.vc-membercount-member-list {
+  justify-content: space-between !important;
+  margin-top: 0 !important;
+  padding-inline: 0 !important;
+  background: var(--bg-overlay-4,var(--background-base-lowest));
+  border-bottom: 1.5px solid var(--border-subtle);
+  border-right: 1.5px solid var(--border-subtle);
+  margin-bottom: -16px !important;
+
+  .vc-membercount-online-dot, .vc-membercount-total-dot { margin: 0 !important; }
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 0;
+    
+    &::after {
+      display: inline;
+      font-size: 0.8em;
+      margin-top: 2px;
+    }
+    &:nth-child(1) { margin-left: 20px; }
+    &:nth-child(1)::after {
+      content: "online";
+      color: var(--color-online);
+    }
+    &:nth-child(3) { padding-right: 20px; }
+    &:nth-child(3)::after {
+      content: "total";
+      color: var(--color-total);
+    }
+  }
+}
+
+/* Don't cover server list with panel better folders fix by Obsidian - https://discord.com/channels/1015060230222131221/1028106818368589824/1354331484831354952 */
+.visual-refresh [style$="grid-area: betterFoldersSidebar;"]~section.panels_c48ade {
+  left: calc(var(--custom-guild-list-width)*2  + var(--space-xs));
+  width: calc(100% - var(--custom-guild-list-width)*2 - var(--space-xs)*2 ) !important;
+}
