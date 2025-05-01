@@ -1,0 +1,10 @@
+[window]
+opacity = 1
+
+decorations = "Full"
+decorations_theme_variant = "Light" # "Dark"
+
+dimensions = { columns = 125, lines = 30 }
+
+[font]
+size = 10.0
