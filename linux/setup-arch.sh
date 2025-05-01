@@ -1,3 +1,5 @@
+export userDir="/home/$USER"
+
 # Discord
 export discord_discord=false
 export discord_vesktop=false
@@ -150,3 +152,32 @@ if [ steam ]; then
 
     sudo pacman -Sy steam --noconfirm
 fi
+
+# Alacritty
+sudo pacman -Sy alacritty --noconfirm
+sudo chsh -s /bin/zsh $USER
+
+# Fastfetch
+sudo pacman -Sy fastfetch --noconfirm
+sudo pacman -Sy imagemagick --noconfirm
+
+mkdir $userDir/.config/fastfetch/
+curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/fastfetch/config.jsonc -O --output-dir $userDir/.config/fastfetch/
+
+curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/fastfetch/logo.txt -O --output-dir $userDir/.config/fastfetch/
+
+# ZSH Shell Setup
+sudo pacman -Sy zsh --noconfirm
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+rm $userDir/.zshrc
+curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/.zshrc -O --output-dir $userDir
+cp zshrc .zshrc
+
+# General Packages
+sudo pacman -Sy bat --noconfirm
