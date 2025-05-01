@@ -177,7 +177,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 rm $userDir/.zshrc
 curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/.zshrc -O --output-dir $userDir
-cp zshrc .zshrc
 
 # General Packages
 sudo pacman -Sy bat --noconfirm
