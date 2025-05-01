@@ -157,6 +157,9 @@ fi
 sudo pacman -Sy alacritty --noconfirm
 sudo chsh -s /bin/zsh $USER
 
+mkdir $userDir/.config/alacritty/
+curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/alacritty/alacritty.toml -O --output-dir $userDir/.config/alacritty/
+
 # Fastfetch
 sudo pacman -Sy fastfetch --noconfirm
 sudo pacman -Sy imagemagick --noconfirm
