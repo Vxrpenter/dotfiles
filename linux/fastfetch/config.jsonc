@@ -23,6 +23,14 @@
     },
     "modules": [
         {
+            "format": "  ",
+            "type": "custom"
+        },
+        {
+            "format": "  ",
+            "type": "custom"
+        },
+        {
             "format": "{#1}{#keys}╭{$1}╮\u001b[76D {user-name-colored}{at-symbol-colored}{host-name-colored}   ",
             "type": "title"
         },
