@@ -130,7 +130,7 @@ if [ discord_discord ]; then sudo pacman -Sy discord --noconfirm; fi
 # Browser installation
 if [ browser_firefox ]; then sudo pacman -Sy firefox --noconfirm; fi
 
-if [ browser_librewolf ]; then yay -S --noconfirm --mflags --skipinteg librewolf; fi
+if [ browser_librewolf ]; then yay -S --noconfirm --mflags --skipinteg librewolf-bin; fi
 
 if [ browser_chromium ]; then sudo pacman -Sy chromium  --noconfirm; fi
 
