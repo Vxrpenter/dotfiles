@@ -166,6 +166,9 @@ rm $userDir/.zshrc
 curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/.zshrc -O --output-dir $userDir
 sudo chsh -s /bin/zsh $USER
 
+sudo rm $userDir/.oh-my-zsh/themes/agnoster.zsh-theme
+curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/oh-my-zsh/themes/agnoster.zsh-theme -O --output-dir $userDir/.oh-my-zsh/themes/
+
 # Alacritty
 sudo pacman -Sy alacritty --noconfirm
 
