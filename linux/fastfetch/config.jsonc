@@ -8,13 +8,15 @@
             "right": 4
         },
         "color": {
-          "1": "blue",
+          "1": "red",
         },
     },
     "display": {
         "separator": "➥  ",
         "color": {
-            "separator": "red"
+            "title": "red",
+            "keys": "white",
+            "separator": "red",
         },
         "constants": [
             "───────────────────────────────────────────────────────────────────────────",
