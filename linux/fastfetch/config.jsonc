@@ -78,9 +78,9 @@
             "type": "memory"
         },
         {
-            "key": "{$2}{#31}➜ network  ",
-            "type": "localip",
-            "format": "{ipv4} ({ifname})"
+            "key": "{$2}{#31}➜ datetime ",
+            "type": "datetime",
+            "format": "{month-name} {day-in-month}, {year} | {hour-pretty}:{minute-pretty} {second-pretty}sec"
         },
         {
             "format": "{#1}{#keys}├{$1}┤",
