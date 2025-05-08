@@ -1,3 +1,4 @@
+#!/bin/bash
 export userDir="/home/$USER"
 
 # Discord
