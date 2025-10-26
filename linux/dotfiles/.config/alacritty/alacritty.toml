@@ -1,5 +1,5 @@
 [window]
-opacity = 1
+opacity = 0.9
 
 decorations = "Full"
 decorations_theme_variant = "Light" # "Dark"
