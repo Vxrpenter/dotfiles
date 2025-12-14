@@ -115,6 +115,20 @@ function steam() {
 echo ""
 steam
 
+# Define git data (username and email)
+function gitData() {
+    confirm "Would you like to configure git data (username & email)?"
+    if  [ $? == 0 ]; then
+        read -rp ":: Please enter you desired git username: " username
+        read -rp ":: Please enter you desired git email " email
+
+        git config --global user.name $username
+        git config --global user.email $email
+    fi
+}
+echo ""
+steam
+
 # Update all packages
 sudo pacman -Syu --noconfirm
 
