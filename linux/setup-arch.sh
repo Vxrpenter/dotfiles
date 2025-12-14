@@ -127,7 +127,7 @@ function gitData() {
     fi
 }
 echo ""
-steam
+gitData
 
 # Update all packages
 sudo pacman -Syu --noconfirm
