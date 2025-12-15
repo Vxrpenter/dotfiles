@@ -132,11 +132,16 @@ function gitData() {
         if [ $? == 0 ]; then
             read -rp ":: Please enter your desired git signkey (gpg) " signkey
             git config --global user.signingkey $signkey
-            git config --global commit.gpgsign true
 
+            confirm "Set up signing?"
+            if [ $? == 0 ]; then
+                git config --global commit.gpgsign true
+                git config --global gpg.program gpg
 
-            # To prevent possible bugs
-            [ -f ~/.bashrc ] && echo -e '\nexport GPG_TTY=$(tty)' >> ~/.bashrc
+                # To prevent possible bugs
+                [ -f ~/.bashrc ] && echo -e '\nexport GPG_TTY=$(tty)' >> ~/.bashrc
+            fi
+
         fi
     fi
 }
