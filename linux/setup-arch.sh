@@ -119,11 +119,28 @@ steam
 function gitData() {
     confirm "Would you like to configure git data (username & email)?"
     if  [ $? == 0 ]; then
-        read -rp ":: Please enter you desired git username: " username
-        read -rp ":: Please enter you desired git email " email
+        confirm "Would you like to set the git username?"
+        if [ $? == 0 ]; then 
+            read -rp ":: Please enter your desired git username: " username
+            git config --global user.name $username
+        fi
 
-        git config --global user.name $username
-        git config --global user.email $email
+        confirm "Would you like to set the git email?"
+        if [ $? == 0 ]; then 
+            read -rp ":: Please enter your desired git email " email
+            git config --global user.email $email
+        fi
+
+        confirm "Would you like to set the git signkey?"
+        if [ $? == 0 ]; then
+            read -rp ":: Please enter your desired git signkey (gpg) " signkey
+            git config --global user.signkey $signkey
+            git config --global commit.gpgsign true
+
+
+            # To prevent possible bugs
+            [ -f ~/.bashrc ] && echo -e '\nexport GPG_TTY=$(tty)' >> ~/.bashrc
+        fi
     fi
 }
 echo ""
