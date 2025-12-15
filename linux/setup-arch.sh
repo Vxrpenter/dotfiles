@@ -131,7 +131,7 @@ function gitData() {
         confirm "Would you like to set the git signkey?"
         if [ $? == 0 ]; then
             read -rp ":: Please enter your desired git signkey (gpg) " signkey
-            git config --global user.signkey $signkey
+            git config --global user.signingkey $signkey
             git config --global commit.gpgsign true
 
 
