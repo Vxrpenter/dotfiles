@@ -94,15 +94,12 @@ browser
 function codeSoftware() {
     confirm "Would you like to install vscodium"
     if [ $? == 0 ]; then code_vscodium=true; fi
-    echo $code_vscodium
 
     confirm "Would you like to install kate"
     if [ $? == 0 ]; then code_kate=true; fi
-    echo $code_kate
 
     confirm "Would you like to install jetbrains-toolbox"
     if [ $? == 0 ]; then code_jetbrains_toolbox=true; fi
-    echo $code_jetbrains_toolbox
 }
 echo ""
 codeSoftware
