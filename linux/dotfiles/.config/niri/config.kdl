@@ -1,0 +1,18 @@
+// Include important configurations
+include "input.kdl"
+include "layout.kdl"
+include "animations.kdl"
+include "window_rules.kdl"
+include "bindings.kdl"
+
+// Startup applications
+spawn-at-startup "waybar"
+
+// Ship the hotkey overlay
+hotkey-overlay {
+    skip-at-startup
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
