@@ -193,9 +193,7 @@ fi
 sudo pacman -Sy zsh --noconfirm
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 rm $userDir/.zshrc
@@ -203,7 +201,7 @@ curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/.zsh
 sudo chsh -s /bin/zsh $USER
 
 sudo rm $userDir/.oh-my-zsh/themes/agnoster.zsh-theme
-curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/oh-my-zsh/themes/agnoster.zsh-theme -O --output-dir $userDir/.oh-my-zsh/themes/
+curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/.oh-my-zsh/themes/agnoster.zsh-theme -O --output-dir $userDir/.oh-my-zsh/themes/
 
 # Alacritty
 sudo pacman -Sy alacritty --noconfirm
@@ -220,7 +218,7 @@ sudo pacman -Sy imagemagick --noconfirm
 
 mkdir $userDir/.config/fastfetch/
 curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/fastfetch/config.jsonc -O --output-dir $userDir/.config/fastfetch/
-
+curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/fastfetch/johnny.txt -O --output-dir $userDir/.config/fastfetch/
 curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/fastfetch/logo.txt -O --output-dir $userDir/.config/fastfetch/
 
 # General Packages
