@@ -208,6 +208,7 @@ curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/oh-m
 # Alacritty
 sudo pacman -Sy noto-fonts --noconfirm
 sudo pacman -Sy noto-fonts-emoji --noconfirm
+sudo pacman -Sy ttf-cascadia-code-nerd --noconfirm
 sudo pacman -Sy alacritty --noconfirm
 
 mkdir $userDir/.config/alacritty/
