@@ -4,8 +4,8 @@ opacity = 0.9
 decorations = "Full"
 decorations_theme_variant = "Light" # "Dark"
 
-dimensions = { columns = 125, lines = 30 }
+dimensions = { columns = 130, lines = 32 }
 
 [font]
 size = 10.0
-normal = { family = "JetbrainsMono", style = "Regular" }
+normal = { family = "NotoSansMono", style = "Regular" }
