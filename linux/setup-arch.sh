@@ -1,22 +1,24 @@
 #!/bin/bash
-export userDir="/home/$USER"
+userDir="/home/$USER"
 
 # Discord
-export discord_discord=false
-export discord_vesktop=false
+discord_discord=false
+discord_vesktop=false
 
 # Browser
-export browser_firefox=false
-export browser_librewolf=false
-export browser_chromium=false
+browser_firefox=false
+browser_librewolf=false
+browser_chromium=false
 
 # Code
-export code_vscodium=false
-export code_kate=false
-export code_jetbrains_toolbox=false
+code_vscodium=false
+code_kate=false
+code_jetbrains_toolbox=false
 
 # Gaming
-export steam=false
+steam=false
+star_citizen=false
+star_citizen_lug_helper_systemwide=false
 
 # Root Check
 if [ "$UID" -ne "0" ]; then
@@ -25,7 +27,7 @@ if [ "$UID" -ne "0" ]; then
 fi
 
 # Basic Functions
-function confirm() {
+confirm() {
   read -rp ":: $1? [Y/n] " response
   case $response in
     [Yy]* )
@@ -41,7 +43,7 @@ function confirm() {
 
 
 # Discord client selection
-function discordClient() {
+discordClient() {
     echo "What type of discord client would you like to install?"
     PS3=":: Enter number of the discord client: "
     select option in Vesktop Discord None
@@ -65,7 +67,7 @@ discordClient
 
 
 # Browser Selection
-function browser() {
+browser() {
     echo "What type of browser would you like to install?"
     PS3=":: Enter number of the browser "
     select option in Firefox Librewolf Chromium None
@@ -91,7 +93,7 @@ browser
 
 
 # Code Software installation
-function codeSoftware() {
+codeSoftware() {
     confirm "Would you like to install vscodium"
     if [ $? == 0 ]; then code_vscodium=true; fi
 
@@ -105,7 +107,7 @@ echo ""
 codeSoftware
 
 # Steam client installation
-function steam() {
+steam() {
     confirm "Would you like to install steam"
     if  [ $? == 0 ]; then steam=true; fi
 }
@@ -113,7 +115,7 @@ echo ""
 steam
 
 # Define git data (username and email)
-function gitData() {
+gitData() {
     confirm "Would you like to configure git data (username & email)?"
     if  [ $? == 0 ]; then
         confirm "Would you like to set the git username?"
@@ -152,7 +154,7 @@ gitData
 sudo pacman -Syu --noconfirm
 
 # Install yay for AUR packages
-sudo sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 
 
 # Check discord client installation
@@ -204,6 +206,8 @@ sudo rm $userDir/.oh-my-zsh/themes/agnoster.zsh-theme
 curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/oh-my-zsh/themes/agnoster.zsh-theme -O --output-dir $userDir/.oh-my-zsh/themes/
 
 # Alacritty
+sudo pacman -Sy noto-fonts --noconfirm
+sudo pacman -Sy noto-fonts-emoji --noconfirm
 sudo pacman -Sy alacritty --noconfirm
 
 mkdir $userDir/.config/alacritty/

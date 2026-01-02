@@ -8,3 +8,4 @@ dimensions = { columns = 125, lines = 30 }
 
 [font]
 size = 10.0
+normal = { family = "JetbrainsMono", style = "Regular" }
