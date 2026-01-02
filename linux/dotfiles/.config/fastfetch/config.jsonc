@@ -2,25 +2,26 @@
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
         "type": "file",
-        "source": "/home/vxrpenter/.config/fastfetch/logo.txt",
+        "source": "~/.config/fastfetch/johnny.txt",
         "padding": {
             "top": 1,
             "right": 4
         },
         "color": {
-          "1": "red",
+          "1": "#fe0000",
+	  "2": "#ffffff",
         },
     },
     "display": {
         "separator": "➥  ",
         "color": {
-            "title": "red",
+            "title": "#86419b",
             "keys": "white",
-            "separator": "red",
+            "separator": "#86419b",
         },
         "constants": [
-            "───────────────────────────────────────────────────────────────────────────",
-            "│\u001b[75C│\u001b[75D"
+            "──────────────────────────────────────────────────────────────────────",
+            "│\u001b[70C│     \u001b[75D"
         ]
     },
     "modules": [
@@ -33,7 +34,7 @@
             "type": "custom"
         },
         {
-            "format": "{#1}{#keys}╭{$1}╮\u001b[76D {user-name-colored}{at-symbol-colored}{host-name-colored}   ",
+            "format": "{#1}{#keys}╭{$1}╮\u001b[76D      {user-name-colored}{at-symbol-colored}{host-name-colored}   ",
             "type": "title"
         },
         {
