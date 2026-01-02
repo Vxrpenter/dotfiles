@@ -206,15 +206,15 @@ sudo rm $userDir/.oh-my-zsh/themes/agnoster.zsh-theme
 curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/oh-my-zsh/themes/agnoster.zsh-theme -O --output-dir $userDir/.oh-my-zsh/themes/
 
 # Alacritty
-sudo pacman -Sy noto-fonts --noconfirm
-sudo pacman -Sy noto-fonts-emoji --noconfirm
-sudo pacman -Sy ttf-cascadia-code-nerd --noconfirm
 sudo pacman -Sy alacritty --noconfirm
 
 mkdir $userDir/.config/alacritty/
 curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/alacritty/alacritty.toml -O --output-dir $userDir/.config/alacritty/
 
 # Fastfetch
+sudo pacman -Sy noto-fonts --noconfirm
+sudo pacman -Sy noto-fonts-emoji --noconfirm
+sudo pacman -Sy ttf-cascadia-code-nerd --noconfirm
 sudo pacman -Sy fastfetch --noconfirm
 sudo pacman -Sy imagemagick --noconfirm
 
