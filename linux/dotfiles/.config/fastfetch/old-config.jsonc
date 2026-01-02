@@ -1,0 +1,110 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "file",
+        "source": "~/.config/fastfetch/johnny.txt",
+        "padding": {
+            "top": 1,
+            "right": 4
+        },
+        "color": {
+          "1": "#fe0000",
+	  "2": "#ffffff",
+        },
+    },
+    "display": {
+        "separator": "➥  ",
+        "color": {
+            "title": "#e20404",
+            "keys": "white",
+            "separator": "#e20404",
+        },
+        "constants": [
+            "──────────────────────────────────────────────────────────────────────",
+            "│\u001b[70C│     \u001b[75D"
+        ]
+    },
+    "modules": [
+        {
+            "format": "  ",
+            "type": "custom"
+        },
+        {
+            "format": "  ",
+            "type": "custom"
+        },
+        {
+            "format": "{#1}{#keys}╭{$1}╮\u001b[76D       {user-name-colored}{at-symbol-colored}{host-name-colored}   ",
+            "type": "title"
+        },
+        {
+            "key": "{$2}{#31} kernel   ",
+            "type": "kernel"
+        },
+        {
+            "key": "{$2}{#32}󰅐 uptime   ",
+            "type": "uptime"
+        },
+        {
+            "key": "{$2}{#33}{icon} distro   ",
+            "type": "os"
+        },
+        {
+            "key": "{$2}{#33}󰏖 Packages ",
+            "type": "packages"
+        },
+        {
+            "key": "{$2}{#34}󰇄 desktop  ",
+            "type": "de"
+        },
+        {
+            "key": "{$2}{#34} wm       ",
+            "type": "wm",
+        },
+        {
+            "key": "{$2}{#35} term     ",
+            "type": "terminal"
+        },
+        {
+            "key": "{$2}{#36} shell    ",
+            "type": "shell"
+        },
+        {
+            "key": "{$2}{#35}󰍛 cpu      ",
+            "type": "cpu",
+            "showPeCoreCount": true,
+            "temp": true
+        },
+        {
+            "key": "{$2}{#34}󰢮 gpu      ",
+            "type": "gpu"
+        },
+        {
+            "key": "{$2}{#33}󰉉 disk     ",
+            "type": "disk",
+            "folders": "/"
+        },
+        {
+            "key": "{$2}{#32} memory   ",
+            "type": "memory"
+        },
+        {
+            "key": "{$2}{#31}󰅐 datetime ",
+            "type": "datetime",
+            "format": "{month-name} {day-in-month}, {year} | {hour-pretty}:{minute-pretty} {second-pretty}sec"
+        },
+        {
+            "format": "{#1}{#keys}├{$1}┤",
+            "type": "custom"
+        },
+        {
+            "key": "{$2}{#39}➜ colors   ",
+            "type": "colors",
+            "symbol": "circle"
+        },
+        {
+            "format": "{#1}{#keys}╰{$1}╯",
+            "type": "custom"
+        }
+    ]
+}

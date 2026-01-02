@@ -4,7 +4,7 @@
         "type": "file",
         "source": "~/.config/fastfetch/johnny.txt",
         "padding": {
-            "top": 1,
+            "top": 5,
             "right": 4
         },
         "color": {
@@ -13,90 +13,134 @@
         },
     },
     "display": {
-        "separator": "➥  ",
+        "separator": ": ",
         "color": {
             "title": "#e20404",
             "keys": "white",
-            "separator": "#e20404",
-        },
-        "constants": [
-            "──────────────────────────────────────────────────────────────────────",
-            "│\u001b[70C│     \u001b[75D"
-        ]
+            "separator": "white",
+        }
     },
     "modules": [
         {
-            "format": "  ",
-            "type": "custom"
+            "type": "custom",
+            "text": ""
         },
         {
-            "format": "  ",
-            "type": "custom"
+            "type": "custom",
+            "format": "\u001b[90m┌──────────────────────Hardware──────────────────────┐"
         },
         {
-            "format": "{#1}{#keys}╭{$1}╮\u001b[76D      {user-name-colored}{at-symbol-colored}{host-name-colored}   ",
-            "type": "title"
+            "type": "title",
+            "key": " PC",
+            "format": "{user-name}{at-symbol-colored}{host-name}",
+            "keyColor": "green"
         },
         {
-            "key": "{$2}{#31} kernel   ",
-            "type": "kernel"
-        },
-        {
-            "key": "{$2}{#32}➜ uptime   ",
-            "type": "uptime"
-        },
-        {
-            "key": "{$2}{#33}➜ distro   ",
-            "type": "os"
-        },
-        {
-            "key": "{$2}{#34}➜ desktop  ",
-            "type": "de"
-        },
-        {
-            "key": "{$2}{#35}➜ term     ",
-            "type": "terminal"
-        },
-        {
-            "key": "{$2}{#36}➜ shell    ",
-            "type": "shell"
-        },
-        {
-            "key": "{$2}{#35}➜ cpu      ",
             "type": "cpu",
+            "key": "│ ├ cpu",
             "showPeCoreCount": true,
-            "temp": true
+            "keyColor": "green"
         },
         {
-            "key": "{$2}{#34}➜ gpu      ",
-            "type": "gpu"
+            "type": "gpu",
+            "key": "│ ├󰢮 gpu",
+            "keyColor": "green"
         },
         {
-            "key": "{$2}{#33}➜ disk     ",
+            "type": "memory",
+            "key": "│ ├ memory",
+            "keyColor": "green"
+        },
+        {
             "type": "disk",
-            "folders": "/"
+            "key": "└ └󰉉 disk",
+            "keyColor": "green"
         },
         {
-            "key": "{$2}{#32}➜ memory   ",
-            "type": "memory"
+            "type": "custom",
+            "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+        },
+        "break",
+        {
+            "type": "custom",
+            "format": "\u001b[90m┌──────────────────────Software──────────────────────┐"
         },
         {
-            "key": "{$2}{#31}➜ datetime ",
+            "type": "os",
+            "key": " OS",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "kernel",
+            "key": "│ ├ kernal",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "packages",
+            "key": "│ ├󰏖 packages",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "shell",
+            "key": "└ └ shell",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "terminal",
+            "key": "└ └ term     ",
+            "keyColor": "yellow"
+        },
+        "break",
+        {
+            "type": "de",
+            "key": "󰇄 DESKTOP",
+            "keyColor": "blue"
+        },
+        {
+            "type": "lm",
+            "key": "│ ├ display",
+            "keyColor": "blue"
+        },
+        {
+            "type": "wm",
+            "key": "│ ├ wm",
+            "keyColor": "blue"
+        },
+        {
+            "type": "wmtheme",
+            "key": "│ ├󰉼 theme",
+            "keyColor": "blue"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+        },
+        "break",
+        {
+            "type": "custom",
+            "format": "\u001b[90m┌────────────────────Uptime / Age────────────────────┐"
+        },
+        {
+            "type": "command",
+            "key": "  󰅐 OS Age ",
+            "keyColor": "magenta",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+        },
+        {
+            "type": "uptime",
+            "key": "  󰅐 Uptime ",
+            "keyColor": "magenta"
+        },
+        {
             "type": "datetime",
+            "key": "  󰅐 Datetime ",
+            "keyColor": "magenta",
             "format": "{month-name} {day-in-month}, {year} | {hour-pretty}:{minute-pretty} {second-pretty}sec"
         },
         {
-            "format": "{#1}{#keys}├{$1}┤",
-            "type": "custom"
+            "type": "custom",
+            "format": "\u001b[90m└────────────────────────────────────────────────────┘"
         },
-        {
-            "key": "{$2}{#39}➜ colors   ",
-            "type": "colors",
-            "symbol": "circle"
-        },
-        {
-            "format": "{#1}{#keys}╰{$1}╯",
-            "type": "custom"
-        }
+        "break",
     ]
 }
