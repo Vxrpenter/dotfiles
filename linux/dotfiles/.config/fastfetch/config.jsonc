@@ -5,12 +5,12 @@
         "source": "~/.config/fastfetch/johnny.txt",
         "padding": {
             "top": 5,
-	    "left": 4,
+            "left": 4,
             "right": 4
         },
         "color": {
           "1": "#fe0000",
-	  "2": "#ffffff",
+          "2": "#ffffff"
         },
     },
     "display": {
@@ -18,7 +18,7 @@
         "color": {
             "title": "#e20404",
             "keys": "white",
-            "separator": "white",
+            "separator": "white"
         }
     },
     "modules": [
@@ -142,6 +142,6 @@
             "type": "custom",
             "format": "\u001b[90m└────────────────────────────────────────────────────┘"
         },
-        "break",
+        "break"
     ]
 }
