@@ -1,24 +1,9 @@
 #!/bin/bash
-userDir="/home/$USER"
 
-# Discord
-discord_discord=false
-discord_vesktop=false
-
-# Browser
-browser_firefox=false
-browser_librewolf=false
-browser_chromium=false
-
-# Code
-code_vscodium=false
-code_kate=false
-code_jetbrains_toolbox=false
-
-# Gaming
-steam=false
-star_citizen=false
-star_citizen_lug_helper_systemwide=false
+# Base Values
+base_repo="https://codeberg.org/Vxrpenter/dotfiles"
+tmp_location="/tmp/dotfiles-vxrpenter/"
+repo_location=""
 
 # Root Check
 if [ "$UID" -ne "0" ]; then
@@ -26,129 +11,152 @@ if [ "$UID" -ne "0" ]; then
     exit 9
 fi
 
+# Logo
+prompt_logo() {
+    clear
+}
+prompt_logo
+
 # Basic Functions
 confirm() {
-  read -rp ":: $1? [Y/n] " response
-  case $response in
-    [Yy]* )
-        return 0
-    ;;
-    [Nn]* )
-        return 1
-    ;;
-    * )
-        return 0
-  esac
+    if [ "$2" == ""  ] || [ "$2" == 0 ]; then
+        printf ":: $1? [Y/n] "
+        option=0
+    elif [ "$2" == 1 ]; then
+        printf ":: $1? [y/N] "
+        option=1
+    fi
+
+    read -rp "" response
+    case $response in
+        [Yy]* ) return 0 ;;
+        [Nn]* ) return 1 ;;
+        * )
+            if [ "$option" == "0" ]; then return 0
+            else return 1; fi
+        ;;
+    esac
 }
 
+# DE selection
+printf "What type DE would you like to install/configure?\n"
+PS3=":: Enter number of the DE: "
+select option in KDE niri None
+do
+    DEOptions=$option
+    break
+done
+
+case $DEOptions in
+    KDE ) DE="kde" ;;
+    niri ) DE="niri" ;;
+esac
+prompt_logo
+
+# Terminal selection
+printf "What type terminal would you like to install?\n"
+PS3=":: Enter number of the terminal: "
+select option in Alacritty None
+do
+    terminalOptions=$option
+    break
+done
+
+case $terminalOptions in
+    Alacritty ) terminal="alacritty" ;;
+esac
+prompt_logo
+
+# Shell selection
+printf "What type shell would you like to install?\n"
+PS3=":: Enter number of the shell: "
+select option in Zsh Fish None
+do
+    shellOptions=$option
+    break
+done
+
+case $shellOptions in
+    Zsh ) terminal="zsh" ;;
+    Fish ) shell="fish" ;;
+esac
+
+# Fastfetch selection
+confirm "Would you like to install fastfetch"
+if [ "$?" == "0" ]; then fastfetch=0; fi
+prompt_logo
 
 # Discord client selection
-discordClient() {
-    echo "What type of discord client would you like to install?"
-    PS3=":: Enter number of the discord client: "
-    select option in Vesktop Discord None
-    do
-        dicordClientOption=$option
-        break
-    done
+printf "What type of discord client would you like to install?\n"
+PS3=":: Enter number of the discord client: "
+select option in Vesktop Discord None
+do
+    dicordClientOption=$option
+    break
+done
 
-    case $dicordClientOption in
-        Vesktop )
-            discord_vesktop=true
-        ;;
-        Discord )
-            discord_discord=true
-        ;;
-
-    esac
-}
-echo ""
-discordClient
-
+case $dicordClientOption in
+    Vesktop ) discord="vesktop" ;;
+    Discord ) discord="discord" ;;
+esac
+prompt_logo
 
 # Browser Selection
-browser() {
-    echo "What type of browser would you like to install?"
-    PS3=":: Enter number of the browser "
-    select option in Firefox Librewolf Chromium None
-    do
-        browserOption=$option
-        break
-    done
+printf "What type of browser would you like to install?\n"
+PS3=":: Enter number of the browser "
+select option in Firefox Librewolf Chromium None
+do
+    browserOption=$option
+    break
+done
 
-    case $browserOption in
-        Firefox )
-            browser_firefox=true
-        ;;
-        Librewolf )
-            browser_librewolf=true
-        ;;
-        Chromium )
-            browser_chromium=true
-        ;;
-    esac
-}
-echo ""
-browser
-
+case $browserOption in
+    Firefox ) browser="firefox" ;;
+    Librewolf ) browser="librewolf" ;;
+    Chromium ) browser="chromium" ;;
+esac
+prompt_logo
 
 # Code Software installation
-codeSoftware() {
-    confirm "Would you like to install vscodium"
-    if [ $? == 0 ]; then code_vscodium=true; fi
+confirm "Would you like to install vscodium" 1
+if [ "$?" == "0" ]; then code_vscodium=0; fi
+confirm "Would you like to install kate" 1
+if [ "$?" == "0" ]; then code_kate=0; fi
+confirm "Would you like to install jetbrains-toolbox" 1
+if [ "$?" == "0" ]; then code_jetbrains_toolbox=0; fi
+prompt_logo
 
-    confirm "Would you like to install kate"
-    if [ $? == 0 ]; then code_kate=true; fi
-
-    confirm "Would you like to install jetbrains-toolbox"
-    if [ $? == 0 ]; then code_jetbrains_toolbox=true; fi
-}
-echo ""
-codeSoftware
-
-# Steam client installation
-steam() {
-    confirm "Would you like to install steam"
-    if  [ $? == 0 ]; then steam=true; fi
-}
-echo ""
-steam
+# Steam installation
+confirm "Would you like to install steam"
+if [ "$?" == "0" ]; then steam=0; fi
+prompt_logo
 
 # Define git data (username and email)
-gitData() {
-    confirm "Would you like to configure git data (username & email)?"
-    if  [ $? == 0 ]; then
-        confirm "Would you like to set the git username?"
-        if [ $? == 0 ]; then 
-            read -rp ":: Please enter your desired git username: " username
-            git config --global user.name $username
-        fi
-
-        confirm "Would you like to set the git email?"
-        if [ $? == 0 ]; then 
-            read -rp ":: Please enter your desired git email " email
-            git config --global user.email $email
-        fi
-
-        confirm "Would you like to set the git signkey?"
-        if [ $? == 0 ]; then
-            read -rp ":: Please enter your desired git signkey (gpg) " signkey
-            git config --global user.signingkey $signkey
-
-            confirm "Set up signing?"
-            if [ $? == 0 ]; then
-                git config --global commit.gpgsign true
-                git config --global gpg.program gpg
-
-                # To prevent possible bugs
-                [ -f ~/.bashrc ] && echo -e '\nexport GPG_TTY=$(tty)' >> ~/.bashrc
-            fi
-
-        fi
+confirm "Would you like to configure git data (username & email)"
+if  [ "$?" == "0" ]; then
+    confirm "Would you like to set the git username"
+    if [ "$?" == "0" ]; then
+        read -rp ":: Please enter your desired git username: " git_username
     fi
-}
-echo ""
-gitData
+
+    confirm "Would you like to set the git email"
+    if [ "$?" == "0" ]; then
+        read -rp ":: Please enter your desired git email " git_email
+    fi
+
+    confirm "Would you like to set the git signkey"
+    if [ "$?" == "0" ]; then
+        read -rp ":: Please enter your desired git signkey (gpg) " git_signKey
+
+        confirm "Set up signing"
+        if [ "$?" == "0" ]; then git_signing=0; fi
+    fi
+fi
+prompt_logo
+
+# Last resort
+confirm "Do you want to write the data (last resort)"
+if [ "$?" == 1 ]; then exit 1; fi
 
 # Update all packages
 sudo pacman -Syu --noconfirm
@@ -156,31 +164,27 @@ sudo pacman -Syu --noconfirm
 # Install yay for AUR packages
 sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 
-
 # Check discord client installation
-if [ discord_vesktop ]; then yay -S --noconfirm --mflags --skipinteg vesktop-bin; fi
-
-if [ discord_discord ]; then sudo pacman -Sy discord --noconfirm; fi
-
+case $discord in
+    vesktop ) yay -S --noconfirm --mflags --skipinteg vesktop-bin ;;
+    discord ) sudo pacman -Sy discord --noconfirm ;;
+esac
 
 # Browser installation
-if [ browser_firefox ]; then sudo pacman -Sy firefox --noconfirm; fi
-
-if [ browser_librewolf ]; then yay -S --noconfirm --mflags --skipinteg librewolf-bin; fi
-
-if [ browser_chromium ]; then sudo pacman -Sy chromium  --noconfirm; fi
+case $browser in
+    firefox ) sudo pacman -Sy firefox --noconfirm ;;
+    librewolf ) yay -S --noconfirm --mflags --skipinteg librewolf-bin ;;
+    chromium ) sudo pacman -Sy chromium  --noconfirm ;;
+esac
 
 
 # Code installation
-if [ code_vscodium ]; then yay -S --noconfirm --mflags --skipinteg vscodium-bin; fi
-
-if [ code_kate ]; then sudo pacman -Sy kate --noconfirm;
-
-if [ code_jetbrains_toolbox ]; then yay -S --noconfirm --mflags --skipinteg jetbrains-toolbox; fi
-
+if [ "$code_vscodium" == "0" ]; then yay -S --noconfirm --mflags --skipinteg vscodium-bin; fi
+if [ "$code_kate" == "0" ]; then sudo pacman -Sy kate --noconfirm; fi
+if [ "$git_username" == "0" ]; then yay -S --noconfirm --mflags --skipinteg jetbrains-toolbox; fi
 
 # Steam installation
-if [ steam ]; then
+if [ "$steam" == "0" ]; then
     # Enable multilib repository
     sudo sed -i -e 's/#[multilib]/[multilib]/g' /etc/pacman.conf
     sudo sed -i -e 's/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist/g' /etc/pacman.conf
@@ -189,37 +193,55 @@ if [ steam ]; then
     sudo pacman -Sy steam --noconfirm
 fi
 
-# ZSH Shell Setup
-sudo pacman -Sy zsh --noconfirm
+# Set git data
+if [ ! "$git_username" == "" ]; then git config --global user.name $git_username; fi
+if [ ! "$git_username" == "" ]; then git config --global user.email $git_email; fi
+if [ ! "$code_jetbrains_toolbox" == "" ]; then git config --global user.signingkey $git_signkey; fi
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+if [ "$git_signing" == "0" ]; then
+    git config --global commit.gpgsign true
+    git config --global gpg.program gpg
 
-rm $userDir/.zshrc
-curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/.zshrc -O --output-dir $userDir
-sudo chsh -s /bin/zsh $USER
-
-sudo rm $userDir/.oh-my-zsh/themes/agnoster.zsh-theme
-curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/zsh/.oh-my-zsh/themes/agnoster.zsh-theme -O --output-dir $userDir/.oh-my-zsh/themes/
-
-# Alacritty
-sudo pacman -Sy alacritty --noconfirm
-
-mkdir $userDir/.config/alacritty/
-curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/alacritty/alacritty.toml -O --output-dir $userDir/.config/alacritty/
-
-# Fastfetch
-sudo pacman -Sy noto-fonts --noconfirm
-sudo pacman -Sy noto-fonts-emoji --noconfirm
-sudo pacman -Sy ttf-cascadia-code-nerd --noconfirm
-sudo pacman -Sy fastfetch --noconfirm
-sudo pacman -Sy imagemagick --noconfirm
-
-mkdir $userDir/.config/fastfetch/
-curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/fastfetch/config.jsonc -O --output-dir $userDir/.config/fastfetch/
-curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/fastfetch/johnny.txt -O --output-dir $userDir/.config/fastfetch/
-curl -L https://raw.githubusercontent.com/Vxrpenter/dotfiles/main/linux/fastfetch/logo.txt -O --output-dir $userDir/.config/fastfetch/
+    # To prevent possible bugs
+    [ -f ~/.bashrc ] && echo -e '\nexport GPG_TTY=$(tty)' >> ~/.bashrc
+fi
 
 # General Packages
 sudo pacman -Sy bat --noconfirm
+
+# Setup dotfiles repository
+cd scripts
+if [ "$?" == "0" ]; then
+    cd ..
+    cd ..
+    repo_location="$PWD" > /dev/null 2>&1;
+    cd -
+else
+    rm -rf $tmp_location
+    git clone $base_repo $tmp_location
+    repo_location="$tmp_location/dotfiles/"
+fi
+
+# Setup DE
+if [ ! "$DE" == "" ]; then
+    case $DE in
+        kde )
+            kde_install_script_location="$repo_location/linux/scripts/setup-kde.sh"
+            chmod +x $kde_install_script_location
+            bash $kde_install_script_location 1 $repo_location
+        ;;
+        niri )
+            niri_install_script_location="$repo_location/linux/scripts/setup-niri.sh"
+            chmod +x $niri_install_script_location
+            bash $niri_install_script_location 1 $repo_location
+        ;;
+    esac
+fi
+
+# Install term and shell
+if [ ! "$terminal" == "" ]; then
+    term_install_script_location="$repo_location/linux/scripts/setup-term.sh"
+
+    chmod +x $term_install_script_location
+    bash $term_install_script_location 1 $repo_location $terminal $shell $fastfetch
+fi
