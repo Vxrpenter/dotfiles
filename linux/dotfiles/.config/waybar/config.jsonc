@@ -1,0 +1,147 @@
+// -*- mode: jsonc -*-
+[{
+    "output": ["DP-1", "eDP-2"],
+    "layer": "bottom",
+    "position": "top",
+    "height": 38, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "niri/workspaces",
+        "cffi/niri-windows",
+        // Alternative for the taskbar (not configured atm.)
+        // "cffi/niri_window_buttons",
+        "cffi/niri-taskbar",
+        "cpu",
+        "memory",
+        "temperature",
+        "network",
+    ],
+    "modules-center": [
+        "niri/window",
+    ],
+    "modules-right": [
+        "mpris",
+        "idle_inhibitor",
+        "load",
+        "wireplumber",
+        "clock",
+        "battery",
+        "tray",
+    ],
+    "niri/workspaces": {
+
+    },
+    // Modules configuration
+    "cffi/niri-taskbar": {
+        "module_path": "/usr/lib/waybar/libniri_taskbar.so",
+    },
+    "cffi/niri-windows": {
+        "module_path": "/usr/lib/waybar/waybar-niri-windows.so",
+        "options": {
+            "rules": [
+                { "app-id": "Alacritty", "class": "alacritty" },
+            ],
+        },
+    },
+    "niri/window": {
+        "format": "{app_id}",
+        "expand": true,
+        "rewrite": {
+            "org.kde.kate": "Kate",
+        }
+    },
+    // "cffi/niri_window_buttons": {
+    //     "module_path": "/usr/lib/waybar/libniri_window_buttons.so",
+    // },
+    "mpris": {
+        "format": " {status_icon} {dynamic}",
+            "interval": 1,
+            "dynamic-len": 40,
+        "status-icons": {
+            "playing": "▶",
+            "paused": "⏸",
+            "stopped": ""
+        },
+        "dynamic-order": ["title", "artist"],
+        "ignored-players": ["firefox"]
+    },
+    "idle_inhibitor": {
+        "format": "{icon} ",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+    "load": {
+        "format": " {}"
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "warning-threshold": 40,
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C ",
+        "format": "{temperatureC}°C ",
+        "format-warning": "{temperatureC}°C ",
+        "format-critical": "⚠ {temperatureC}°C ",
+        "format-icons": [""],
+    },
+    "network": {
+        "interface": "eno1",
+        "format-wifi": " ",
+        "format-ethernet": " ",
+        "format-disconnected": "{ipaddr} ",
+        "tooltip-format-wifi": "Connected",
+        "tooltip-format-ethernet": "Connected",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 100
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "wireplumber": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% ",
+        "format-bluetooth-muted": "MUTE {icon}",
+        "format-muted": "MUTE",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    }
+}]

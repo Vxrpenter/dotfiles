@@ -33,6 +33,22 @@ sudo pacman --noconfirm -Sy udiskie
 # Copy dotfiles to configs
 cp -rf "$dofiles_location/.config/niri/" ~/.config/
 
+# Setup waybar
+sudo pacman -Sy waybar --noconfirm
+sudo pacman -Sy cava --noconfirm
+yay -S --noconfirm --mflags --skipinteg waybar-niri-taskbar
+
+git clone "https://github.com/calico32/waybar-niri-windows" "$tmp_location"
+sudo pacman -Sy go --noconfirm
+sudo pacman -S gtk3 --noconfirm
+make $tmp_location/waybar-niri-windows/
+cp -f waybar-niri-windows.so /usr/lib/waybar/
+
+yay -S --noconfirm --mflags --skipinteg niri_window_buttons
+
+
+cp -rf "$dofiles_location/.config/waybar/" ~/.config/
+
 # Delete tmp location
 if [ "$delete_tmp" == "0" ]; then
     rm -rf $tmp_location
