@@ -7,6 +7,7 @@ include "bindings.kdl"
 
 // Startup applications
 spawn-at-startup "waybar"
+spawn-at-startup "mako"
 
 // Ship the hotkey overlay
 hotkey-overlay {
