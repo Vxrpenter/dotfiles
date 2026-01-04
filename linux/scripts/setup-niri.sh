@@ -34,6 +34,7 @@ sudo pacman --noconfirm -Sy udiskie
 # Copy dotfiles to configs
 cp -rf "$dofiles_location/.config/niri/" ~/.config/
 cp -rf "$dofiles_location/.config/fuzzel/" ~/.config/
+cp -rf "$dofiles_location/.config/mako/" ~/.config/
 
 # Setup waybar
 sudo pacman -Sy waybar --noconfirm
