@@ -38,6 +38,7 @@ cp -rf "$dofiles_location/.config/mako/" ~/.config/
 
 # Setup waybar
 sudo pacman -Sy waybar --noconfirm
+sudo pacman -Sy pacman-contrib --noconfirm
 sudo pacman -Sy cava --noconfirm
 yay -S --noconfirm --mflags --skipinteg waybar-niri-taskbar
 

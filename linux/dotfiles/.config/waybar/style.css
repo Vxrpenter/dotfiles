@@ -90,6 +90,7 @@ background-color: #b16286;
 
 /* Apply global basic styling */
 #idle_inhibitor,
+#custom-updater,
 #scratchpad,
 #mode,
 #cpu,
@@ -115,6 +116,8 @@ color: #ebdbb2;
 
 /* Apply global hover styling */
 #idle_inhibitor:hover,
+#custom-updater:hover,
+#mpris:hover,
 #scratchpad:hover,
 #mode:hover,
 #cpu:hover,
@@ -132,6 +135,7 @@ color: #ebdbb2;
 #custom-reboot:hover,
 #custom-lock:hover,
 #mpris:hover,
+#mpris.playing:hover,
 #load:hover {
 color: #1d2021;
 background: #ebdbb2;
@@ -175,6 +179,11 @@ margin-right: 2px;
 color: #FF0F0F;
 }
 
+/* Updates Styling */
+#custom-updater {
+background: #d79921;
+color: #282828;
+}
 
 /* Battery Styling */
 #battery.charging, #battery.plugged {
