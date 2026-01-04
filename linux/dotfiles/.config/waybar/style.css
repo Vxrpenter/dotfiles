@@ -26,12 +26,12 @@ window#waybar.empty #window {
 }
 
 /*
- w *indow#waybar.empty {
- background-color: transparent;
- }
- window#waybar.solo {
- background-color: #FFFFFF;
- }
+ * w *indow#waybar.empty {
+ * background-color: transparent;
+ * }
+ * window#waybar.solo {
+ * background-color: #FFFFFF;
+ * }
  */
 
 .modules-right {
@@ -52,20 +52,19 @@ button {
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 /*
- b *utton:hover {
- background: inherit;
- box-shadow: inset 0 -3px #ebdbb2;
- } */
+ * b *utton:hover {
+ * background: inherit;
+ * box-shadow: inset 0 -3px #ebdbb2;
+ * } */
 
 #workspaces {
 background-color: #282828;
 }
 
 #workspaces button {
-padding: 0 5px;
+padding: 0 10px;
 background-color: transparent;
 color: #ebdbb2;
-border-radius: 0;
 }
 
 #workspaces button:first-child {
@@ -89,6 +88,7 @@ background-color: #665c54;
 background-color: #b16286;
 }
 
+/* Apply global basic styling */
 #idle_inhibitor,
 #scratchpad,
 #mode,
@@ -102,6 +102,10 @@ background-color: #b16286;
 #backlight,
 #wireplumber,
 #tray,
+#custom-power,
+#custom-exit,
+#custom-reboot,
+#custom-lock,
 #mpris,
 #load {
 padding: 0 10px;
@@ -109,6 +113,31 @@ background-color: #282828;
 color: #ebdbb2;
 }
 
+/* Apply global hover styling */
+#idle_inhibitor:hover,
+#scratchpad:hover,
+#mode:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#network:hover,
+#window:hover,
+#clock:hover,
+#battery:hover,
+#backlight:hover,
+#wireplumber:hover,
+#tray:hover,
+#custom-power:hover,
+#custom-exit:hover,
+#custom-reboot:hover,
+#custom-lock:hover,
+#mpris:hover,
+#load:hover {
+color: #1d2021;
+background: #ebdbb2;
+}
+
+/* Basic module styling */
 #mode {
 background-color: #689d6a;
 color: #282828;
@@ -125,6 +154,29 @@ color: #282828;
     margin-right: 0;
 }
 
+/* Power Button Styling */
+#custom-power {
+padding-right: 16px;
+padding-left: 12px;
+margin-left: 2px;
+}
+
+#custom-exit,
+#custom-reboot,
+#custom-lock {
+margin-left: 2px;
+margin-right: 2px;
+}
+
+#custom-power:hover,
+#custom-exit:hover,
+#custom-reboot:hover,
+#custom-lock:hover {
+color: #FF0F0F;
+}
+
+
+/* Battery Styling */
 #battery.charging, #battery.plugged {
 background-color: #98971a;
 color: #282828;
@@ -152,10 +204,12 @@ label:focus {
     background-color: #000000;
 }
 
+/* Wireplumber Styling */
 #wireplumber.muted {
 background-color: #458588;
 }
 
+/* Tray Styling */
 #tray > .passive {
 -gtk-icon-effect: dim;
 }
@@ -164,24 +218,21 @@ background-color: #458588;
 -gtk-icon-effect: highlight;
 }
 
+#tray menu {
+font-family: sans-serif;
+}
+
+/* Mpris Styling */
 #mpris.playing {
 background-color: #d79921;
 color: #282828;
 }
 
-#tray menu {
-font-family: sans-serif;
-}
-
-#scratchpad.empty {
-background: transparent;
-}
-
+/* Taskbar Styling */
 .niri-taskbar {
-    padding: 0 10px;
+    padding: 0 6px;
     background-color: #282828;
     color: #ebdbb2;
-    margin-left: 10px;
 }
 
 .niri-taskbar button:hover {
@@ -192,14 +243,16 @@ background: transparent;
     background: #ebdbb2;
 }
 
+/* Temperature Styling */
 #temperature.warning {
 color: #ECE81A;
 }
 
 #temperature.critical {
-    color: #FF0F0F;
+color: #FF0F0F;
 }
 
+/* Network Styling */
 #network.disconnected {
-    color: #FF0F0F;
+color: #FF0F0F;
 }

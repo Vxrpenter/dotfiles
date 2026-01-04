@@ -3,8 +3,8 @@
     "output": ["DP-1", "eDP-2"],
     "layer": "bottom",
     "position": "top",
-    "height": 38, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
+    "height": 35, // Waybar height (to be removed for auto height)
+    "width": "auto",
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
@@ -29,7 +29,44 @@
         "clock",
         "battery",
         "tray",
+        "group/power"
     ],
+
+    "group/power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-power",
+            "transition-left-to-right": false,
+        },
+        "modules": [
+            "custom/power", // First element is the "group leader" and won't ever be hidden
+            "custom/lock",
+            "custom/exit",
+            "custom/reboot",
+        ]
+    },
+    "custom/power": {
+        "format": "",
+        "tooltip-format": "Shutdown",
+        "on-click": "shutdown -h now"
+    },
+    "custom/exit": {
+        "format": " 󰗼 ",
+        "tooltip-format": "Exit",
+        "on-click": "niri msg action quit"
+    },
+    "custom/lock": {
+        "format": " 󰍁 ",
+        "tooltip-format": "Lock",
+        "on-click": "swaylock"
+    },
+    "custom/reboot": {
+        "format": " 󰜉 ",
+        "tooltip-format": "Reboot",
+        "on-click": "reboot"
+    },
+
     "niri/workspaces": {
 
     },
@@ -65,7 +102,7 @@
             "stopped": ""
         },
         "dynamic-order": ["title", "artist"],
-        "ignored-players": ["firefox"]
+        "ignored-players": ["firefox", "librewolf"]
     },
     "idle_inhibitor": {
         "format": "{icon} ",
@@ -82,20 +119,24 @@
         "format": " {}"
     },
     "clock": {
-        // "timezone": "America/New_York",
+        "timezone": "Germany/Berlin",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
+        "interval": 2,
         "format": "{usage}% ",
-        "tooltip": false,
         "on-click": "alacritty -e btop"
     },
     "memory": {
+        "interval": 2,
+        // "format": "{used}G / {total}G ",
         "format": "{}% ",
+        "tooltip-format": "{used}G / {total}G",
         "on-click": "alacritty -e btop"
     },
     "temperature": {
+        "interval": 2,
         // "thermal-zone": 2,
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "warning-threshold": 40,
@@ -108,12 +149,15 @@
         "on-click": "alacritty -e btop"
     },
     "network": {
+        "interval": 2,
         "interface": "eno1",
+        // "format-wifi": "{bandwidthDownBytes} / {bandwidthTotalBytes}  ",
+        // "format-ethernet": "{bandwidthDownBytes} / {bandwidthTotalBytes}   ",
         "format-wifi": " ",
         "format-ethernet": " ",
-        "format-disconnected": "{ipaddr} ",
-        "tooltip-format-wifi": "Connected",
-        "tooltip-format-ethernet": "Connected",
+        "format-disconnected": " ",
+        "tooltip-format-wifi": "{bandwidthDownBytes} / {bandwidthTotalBytes}",
+        "tooltip-format-ethernet": "{bandwidthDownBytes} / {bandwidthTotalBytes}",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 100
     },
