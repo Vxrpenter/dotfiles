@@ -7,6 +7,7 @@ include "bindings.kdl"
 
 // Startup applications
 spawn-sh-at-startup "waybar --config .config/waybar/config.jsonc"
+spawn-sh-at-startup "wl-paste --watch cliphist store"
 spawn-at-startup "mako"
 
 // Ship the hotkey overlay

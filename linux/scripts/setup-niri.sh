@@ -30,6 +30,8 @@ sudo pacman --noconfirm -Sy swayidle
 sudo pacman --noconfirm -Sy swaylock
 sudo pacman --noconfirm -Sy xwayland-satellite
 sudo pacman --noconfirm -Sy udiskie
+sudo pacman --noconfirm -Sy wl-paste
+sudo pacman --noconfirm -Sy cliphist
 
 # Copy dotfiles to configs
 cp -rf "$dofiles_location/.config/niri/" ~/.config/

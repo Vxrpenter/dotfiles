@@ -25,6 +25,7 @@
         "mpris",
         "idle_inhibitor",
         "custom/updater",
+        "custom/clipboard",
         "load",
         "wireplumber",
         "clock",
@@ -32,6 +33,12 @@
         "tray",
         "group/power"
     ],
+
+    "custom/clipboard": {
+        "format": "󰅍",
+        "tooltip": false,
+        "on-click": "bash ~/.config/waybar/scirpts/cliphist-fuzzel-img.sh"
+    },
 
     "custom/updater":{
         "format": "{}  ",

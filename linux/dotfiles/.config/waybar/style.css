@@ -26,12 +26,12 @@ window#waybar.empty #window {
 }
 
 /*
- * w *indow#waybar.empty {
- * background-color: transparent;
- * }
- * window#waybar.solo {
- * background-color: #FFFFFF;
- * }
+ w *indow#waybar.empty {
+ background-color: transparent;
+ }
+ window#waybar.solo {
+ background-color: #FFFFFF;
+ }
  */
 
 .modules-right {
@@ -52,45 +52,46 @@ button {
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 /*
- * b *utton:hover {
- * background: inherit;
- * box-shadow: inset 0 -3px #ebdbb2;
- * } */
+ b *utton:hover {
+ background: inherit;
+ box-shadow: inset 0 -3px #ebdbb2;
+ } */
 
 #workspaces {
-background-color: #282828;
+    background-color: #282828;
 }
 
 #workspaces button {
-padding: 0 10px;
-background-color: transparent;
-color: #ebdbb2;
+    padding: 0 10px;
+    background-color: transparent;
+    color: #ebdbb2;
 }
 
 #workspaces button:first-child {
-border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
 }
 
 #workspaces button:last-child {
-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
 }
 
 #workspaces button:hover {
-color: #d79921;
+    color: #d79921;
 }
 
 #workspaces button.focused {
-background-color: #665c54;
-/* box-shadow: inset 0 -3px #ffffff; */
+    background-color: #665c54;
+    /* box-shadow: inset 0 -3px #ffffff; */
 }
 
 #workspaces button.urgent {
-background-color: #b16286;
+    background-color: #b16286;
 }
 
 /* Apply global basic styling */
 #idle_inhibitor,
 #custom-updater,
+#custom-clipboard,
 #scratchpad,
 #mode,
 #cpu,
@@ -109,14 +110,15 @@ background-color: #b16286;
 #custom-lock,
 #mpris,
 #load {
-padding: 0 10px;
-background-color: #282828;
-color: #ebdbb2;
+    padding: 0 10px;
+    background-color: #282828;
+    color: #ebdbb2;
 }
 
 /* Apply global hover styling */
 #idle_inhibitor:hover,
 #custom-updater:hover,
+#custom-clipboard:hover,
 #mpris:hover,
 #scratchpad:hover,
 #mode:hover,
@@ -129,7 +131,6 @@ color: #ebdbb2;
 #battery:hover,
 #backlight:hover,
 #wireplumber:hover,
-#tray:hover,
 #custom-power:hover,
 #custom-exit:hover,
 #custom-reboot:hover,
@@ -137,15 +138,15 @@ color: #ebdbb2;
 #mpris:hover,
 #mpris.playing:hover,
 #load:hover {
-color: #1d2021;
-background: #ebdbb2;
+    color: #1d2021;
+    background: #ebdbb2;
 }
 
 /* Basic module styling */
 #mode {
-background-color: #689d6a;
-color: #282828;
-/* box-shadow: inset 0 -3px #ffffff; */
+    background-color: #689d6a;
+    color: #282828;
+    /* box-shadow: inset 0 -3px #ffffff; */
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -158,37 +159,43 @@ color: #282828;
     margin-right: 0;
 }
 
+/* Clipboard Styling */
+#custom-clipboard {
+    padding-right: 14px;
+    padding-left: 12px;
+}
+
 /* Power Button Styling */
 #custom-power {
-padding-right: 16px;
-padding-left: 12px;
-margin-left: 2px;
+    padding-right: 16px;
+    padding-left: 12px;
+    margin-left: 2px;
 }
 
 #custom-exit,
 #custom-reboot,
 #custom-lock {
-margin-left: 2px;
-margin-right: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 #custom-power:hover,
 #custom-exit:hover,
 #custom-reboot:hover,
 #custom-lock:hover {
-color: #FF0F0F;
+    color: #FF0F0F;
 }
 
 /* Updates Styling */
 #custom-updater {
-background: #d79921;
-color: #282828;
+    background: #d79921;
+    color: #282828;
 }
 
 /* Battery Styling */
 #battery.charging, #battery.plugged {
-background-color: #98971a;
-color: #282828;
+    background-color: #98971a;
+    color: #282828;
 }
 
 @keyframes blink {
@@ -200,13 +207,13 @@ color: #282828;
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-background-color: #cc241d;
-color: #ebdbb2;
-animation-name: blink;
-animation-duration: 0.5s;
-animation-timing-function: steps(12);
-animation-iteration-count: infinite;
-animation-direction: alternate;
+    background-color: #cc241d;
+    color: #ebdbb2;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 label:focus {
@@ -215,16 +222,16 @@ label:focus {
 
 /* Wireplumber Styling */
 #wireplumber.muted {
-background-color: #458588;
+    background-color: #458588;
 }
 
 /* Tray Styling */
 #tray > .passive {
--gtk-icon-effect: dim;
+    -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
--gtk-icon-effect: highlight;
+    -gtk-icon-effect: highlight;
 }
 
 #tray menu {
@@ -233,8 +240,8 @@ font-family: sans-serif;
 
 /* Mpris Styling */
 #mpris.playing {
-background-color: #d79921;
-color: #282828;
+    background-color: #d79921;
+    color: #282828;
 }
 
 /* Taskbar Styling */
@@ -254,14 +261,14 @@ color: #282828;
 
 /* Temperature Styling */
 #temperature.warning {
-color: #ECE81A;
+    color: #ECE81A;
 }
 
 #temperature.critical {
-color: #FF0F0F;
+    color: #FF0F0F;
 }
 
 /* Network Styling */
 #network.disconnected {
-color: #FF0F0F;
+    color: #FF0F0F;
 }
