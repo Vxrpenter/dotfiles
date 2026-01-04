@@ -88,10 +88,12 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "alacritty -e btop"
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+        "on-click": "alacritty -e btop"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -103,6 +105,7 @@
         "format-warning": "{temperatureC}°C ",
         "format-critical": "⚠ {temperatureC}°C ",
         "format-icons": [""],
+        "on-click": "alacritty -e btop"
     },
     "network": {
         "interface": "eno1",
