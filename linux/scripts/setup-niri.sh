@@ -32,6 +32,7 @@ sudo pacman --noconfirm -Sy udiskie
 
 # Copy dotfiles to configs
 cp -rf "$dofiles_location/.config/niri/" ~/.config/
+cp -rf "$dofiles_location/.config/fuzzel/" ~/.config/
 
 # Setup waybar
 sudo pacman -Sy waybar --noconfirm
@@ -45,7 +46,6 @@ make $tmp_location/waybar-niri-windows/
 cp -f waybar-niri-windows.so /usr/lib/waybar/
 
 yay -S --noconfirm --mflags --skipinteg niri_window_buttons
-
 
 cp -rf "$dofiles_location/.config/waybar/" ~/.config/
 
