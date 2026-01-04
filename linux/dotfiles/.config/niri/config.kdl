@@ -6,7 +6,7 @@ include "window_rules.kdl"
 include "bindings.kdl"
 
 // Startup applications
-spawn-at-startup "waybar"
+spawn-sh-at-startup "waybar --config .config/waybar/config.jsonc"
 spawn-at-startup "mako"
 
 // Ship the hotkey overlay
