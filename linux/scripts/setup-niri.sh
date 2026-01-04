@@ -23,6 +23,7 @@ sudo pacman --noconfirm -Sy fuzzel
 sudo pacman --noconfirm -Sy mako
 sudo pacman --noconfirm -Sy waybar
 sudo pacman --noconfirm -Sy xdg-desktop-portal-gtk
+sudo pacman --noconfirm -Sy xdg-desktop-portal-gnome
 sudo pacman --noconfirm -Sy alacritty
 sudo pacman --noconfirm -Sy swaybg
 sudo pacman --noconfirm -Sy swayidle

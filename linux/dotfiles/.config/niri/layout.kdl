@@ -15,10 +15,10 @@ layout {
     default-column-width { proportion 0.5; }
 
     focus-ring {
-        width 2
+        width 1
 
         // Color of the ring on the active monitor.
-        active-color "#9b3737"
+        active-color "#d79921"
 
         // Color of the ring on inactive monitors.
         inactive-color "#505050"
