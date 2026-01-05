@@ -88,7 +88,7 @@
         },
         {
             "type": "terminal",
-            "key": "└ └ term     ",
+            "key": "└ └ term",
             "keyColor": "yellow"
         },
         "break",
