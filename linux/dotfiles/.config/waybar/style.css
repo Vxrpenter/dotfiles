@@ -92,6 +92,7 @@ button {
 #idle_inhibitor,
 #custom-updater,
 #custom-clipboard,
+#custom-clipboardwipe,
 #scratchpad,
 #mode,
 #cpu,
@@ -119,6 +120,7 @@ button {
 #idle_inhibitor:hover,
 #custom-updater:hover,
 #custom-clipboard:hover,
+#custom-clipboardwipe:hover,
 #mpris:hover,
 #scratchpad:hover,
 #mode:hover,
@@ -163,6 +165,16 @@ button {
 #custom-clipboard {
     padding-right: 14px;
     padding-left: 12px;
+    margin-left: 2px;
+}
+
+#custom-clipboardwipe {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+#custom-clipboardwipe:hover {
+    color: #FF0F0F;
 }
 
 /* Power Button Styling */

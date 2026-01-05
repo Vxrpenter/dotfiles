@@ -25,7 +25,7 @@
         "mpris",
         "idle_inhibitor",
         "custom/updater",
-        "custom/clipboard",
+        "group/clipboard",
         "load",
         "wireplumber",
         "clock",
@@ -33,11 +33,29 @@
         "tray",
         "group/power"
     ],
+    "group/clipboard": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-clipboard",
+            "transition-left-to-right": false,
+        },
+        "modules": [
+            "custom/clipboard", // First element is the "group leader" and won't ever be hidden
+            "custom/clipboardwipe"
+        ]
+    },
 
     "custom/clipboard": {
         "format": "󰅍",
-        "tooltip": false,
+        "tooltip-format": "Clipboard",
         "on-click": "bash ~/.config/waybar/scirpts/cliphist-fuzzel-img.sh"
+    },
+
+    "custom/clipboardwipe": {
+        "format": "",
+        "tooltip-format": "Wipe Clipboard",
+        "on-click": "cliphist wipe"
     },
 
     "custom/updater":{
