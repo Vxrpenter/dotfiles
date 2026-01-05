@@ -38,4 +38,6 @@ input {
         // scroll-button-lock
         // middle-emulation
     }
+
+    focus-follows-mouse max-scroll-amount="0%"
 }
