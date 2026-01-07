@@ -23,8 +23,9 @@
     ],
     "modules-right": [
         "mpris",
+        "custom/notificationmode",
         "idle_inhibitor",
-        "custom/updater",
+        "custom/updates",
         "group/clipboard",
         "load",
         "wireplumber",
@@ -33,6 +34,21 @@
         "tray",
         "group/power"
     ],
+
+    "custom/notificationmode": {
+        "format": "{text}",
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/notificationmode.sh 'icon' '' ' '",
+        "interval": 1,
+        "on-click": "~/.config/waybar/scripts/notificationmode.sh 'toggle'",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/menus/notifications.xml",
+        "menu-actions": {
+            "default": "makoctl mode -s default",
+            "dnd": "makoctl mode -s dnd"
+        },
+    },
+
     "group/clipboard": {
         "orientation": "inherit",
         "drawer": {
@@ -49,21 +65,51 @@
     "custom/clipboard": {
         "format": "󰅍",
         "tooltip-format": "Clipboard",
-        "on-click": "bash ~/.config/waybar/scirpts/cliphist-fuzzel-img.sh"
+        "on-click": "bash ~/.config/waybar/scripts/cliphist-fuzzel-img.sh",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/menus/clipboard.xml",
+        "menu-actions": {
+            "show": "bash ~/.config/waybar/scripts/cliphist-fuzzel-img.sh",
+            "wipe": "bash ~/.config/waybar/scripts/confirm.sh \"Wipe Clipboard?\" \"cliphist wipe && notify-send 'Clipboard has been wiped' \"",
+            "deactivate": ""
+        },
     },
 
     "custom/clipboardwipe": {
         "format": "",
         "tooltip-format": "Wipe Clipboard",
-        "on-click": "cliphist wipe"
+        "on-click": "bash ~/.config/waybar/scripts/confirm.sh \"Wipe Clipboard?\" \"cliphist wipe && notify-send 'Clipboard has been wiped' \""
     },
 
-    "custom/updater":{
+
+    /*
+    This module can be used if the waybar pacman update module is not available
+
+    "custom/updates":{
         "format": "{}  ",
         "exec": "checkupdates | wc -l",
         "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
         "interval": 15,
         "on-click": "alacritty -e sudo pacman --noconfirm -Syu && notify-send 'Packages have been updated' "
+    },*/
+
+    "custom/updates": {
+        "format": "{}{icon}",
+        "return-type": "json",
+        "format-icons": {
+            "has-updates": "  ",
+            "updated": ""
+        },
+        "exec": "/usr/lib/waybar/waybar-module-pacman-updates --no-zero-output --tooltip-align-columns --interval-seconds 5 --network-interval-seconds 300 --color-semver-updates FA5F5D,18BA56,F1CE31,68BBB6,747889",
+        "exec-if": "which /usr/lib/waybar/waybar-module-pacman-updates",
+        "on-click": "alacritty -e yay -Syu --noconfirm --mflags --skipinteg && notify-send 'Packages have been updated'",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/menus/updates.xml",
+        "menu-actions": {
+            "all": "alacritty -e yay -Syu --noconfirm --mflags --skipinteg && notify-send 'Packages have been updated'",
+            "pacman": "alacritty -e sudo pacman -Syu && notify-send 'Packages have been updated'",
+            "aur": "alacritty -e yay -Syu --noconfirm --mflags --skipinteg && notify-send 'Packages have been updated'",
+        },
     },
 
     "group/power": {
@@ -83,7 +129,15 @@
     "custom/power": {
         "format": "",
         "tooltip-format": "Shutdown",
-        "on-click": "shutdown -h now"
+        "on-click": "bash ~/.config/waybar/scripts/confirm.sh \"Shutdown Machine?\" \"shutdown -h now\"",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/menus/power.xml",
+        "menu-actions": {
+            "shutdown": "bash ~/.config/waybar/scripts/confirm.sh \"Shutdown Machine?\" \"shutdown -h now\"",
+            "reboot": "niri msg action quit",
+            "exit": "bash ~/.config/waybar/scripts/confirm.sh \"Lock Screen?\" \"swaylock\"",
+            "lock": "bash ~/.config/waybar/scripts/confirm.sh \"Reboot Machine?\" \"reboot\""
+        },
     },
     "custom/exit": {
         "format": " 󰗼 ",
@@ -93,12 +147,12 @@
     "custom/lock": {
         "format": " 󰍁 ",
         "tooltip-format": "Lock",
-        "on-click": "swaylock"
+        "on-click": "bash ~/.config/waybar/scripts/confirm.sh \"Lock Screen?\" \"swaylock\""
     },
     "custom/reboot": {
         "format": " 󰜉 ",
         "tooltip-format": "Reboot",
-        "on-click": "reboot"
+        "on-click": "bash ~/.config/waybar/scripts/confirm.sh \"Reboot Machine?\" \"reboot\""
     },
 
     "niri/workspaces": {
@@ -136,7 +190,7 @@
             "stopped": ""
         },
         "dynamic-order": ["title", "artist"],
-        "ignored-players": ["firefox", "librewolf"]
+        "ignored-players": ["firefox", "librewolf"],
     },
     "idle_inhibitor": {
         "format": "{icon} ",

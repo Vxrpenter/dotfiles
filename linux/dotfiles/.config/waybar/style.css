@@ -7,6 +7,33 @@
     border-radius: 4px;
 }
 
+/* Custom Tooltip */
+tooltip {
+    background-color: #282828;
+    border: 0px;
+    border-radius: 4px;
+}
+tooltip label {
+    color: #ebdbb2;
+}
+
+menu {
+    border: 0px;
+    border-radius: 4px;
+    background: #282828;
+    color: #ebdbb2;
+}
+
+menuitem {
+    border-radius: 4px;
+}
+
+menuitem:hover {
+    color: #1d2021;
+    background: #ebdbb2;
+    border-color: #ebdbb2;
+}
+
 window#waybar {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, monospace;
@@ -90,7 +117,8 @@ button {
 
 /* Apply global basic styling */
 #idle_inhibitor,
-#custom-updater,
+#custom-notificationmode,
+#custom-updates,
 #custom-clipboard,
 #custom-clipboardwipe,
 #scratchpad,
@@ -118,7 +146,8 @@ button {
 
 /* Apply global hover styling */
 #idle_inhibitor:hover,
-#custom-updater:hover,
+#custom-notificationmode:hover,
+#custom-updates.has-updates:hover,
 #custom-clipboard:hover,
 #custom-clipboardwipe:hover,
 #mpris:hover,
@@ -161,6 +190,16 @@ button {
     margin-right: 0;
 }
 
+/* Notificationmode */
+#custom-notificationmode.default {
+    padding-right: 14px;
+}
+
+#custom-notificationmode.dnd {
+    padding-right: 16px;
+    padding-left: 2px;
+}
+
 /* Clipboard Styling */
 #custom-clipboard {
     padding-right: 14px;
@@ -199,7 +238,7 @@ button {
 }
 
 /* Updates Styling */
-#custom-updater {
+#custom-updates.has-updates {
     background: #d79921;
     color: #282828;
 }

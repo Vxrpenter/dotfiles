@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <object class="GtkMenu" id="menu">
+        <child>
+            <object class="GtkMenuItem" id="show">
+                <property name="label">󰅍    Show Clipboard</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="wipe">
+                <property name="label">    Wipe Clipboard</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkSeparatorMenuItem" id="delimiter1" />
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="deactivate">
+                <property name="label">    Deactivate Clipboard</property>
+            </object>
+        </child>
+    </object>
+</interface>

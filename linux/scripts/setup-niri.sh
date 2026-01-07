@@ -43,16 +43,23 @@ sudo pacman -Sy waybar --noconfirm
 sudo pacman -Sy pacman-contrib --noconfirm
 sudo pacman -Sy cava --noconfirm
 yay -S --noconfirm --mflags --skipinteg waybar-niri-taskbar
+yay -S --noconfirm --mflags --skipinteg niri_window_buttons
+yay -S --noconfirm --mflags --skipinteg aurutils
 
 git clone "https://github.com/calico32/waybar-niri-windows" "$tmp_location"
 sudo pacman -Sy go --noconfirm
 sudo pacman -S gtk3 --noconfirm
 make $tmp_location/waybar-niri-windows/
-cp -f waybar-niri-windows.so /usr/lib/waybar/
+sudo cp -f waybar-niri-windows.so /usr/lib/waybar/
 
-yay -S --noconfirm --mflags --skipinteg niri_window_buttons
+git clone https://github.com/coffebar/waybar-module-pacman-updates "$tmp_location"
+cd "$tmp_location/waybar-module-pacman-updates"
+cargo fetch
+cargo build --frozen --release
+sudo cp target/release/waybar-module-pacman-updates /usr/lib/waybar
 
 cp -rf "$dofiles_location/.config/waybar/" ~/.config/
+chmod +x ~/.config/waybar/scripts/*
 
 # Delete tmp location
 if [ "$delete_tmp" == "0" ]; then

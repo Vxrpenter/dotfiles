@@ -4,7 +4,7 @@ thumbnail_dir="${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/thumbnails"
 
 cliphist_list=$(cliphist list)
 if [ -z "$cliphist_list" ]; then
-  fuzzel -d --prompt-only "cliphist: please store something first "
+  fuzzel -d --prompt-only "cliphist: Clipboard Empty"
   rm -rf "$thumbnail_dir"
   exit
 fi
@@ -30,7 +30,7 @@ exit_code=$?
 
 # ALT+0 to clear history
 if [ "$exit_code" -eq 19 ]; then
-  confirmation=$(echo -e "No\nYes" | fuzzel -d --placeholder "Delete history?" --lines 2)
+  confirmation=$(echo -e "Yes\nNo" | fuzzel -d --placeholder "Delete history?" --lines 2)
   [ "$confirmation" == "Yes" ] && rm ~/.cache/cliphist/db && rm -rf "$thumbnail_dir"
 # ALT+1 to delete selected item
 # configure the keybind with `custom-1` in your fuzzel.ini
